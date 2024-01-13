@@ -20,6 +20,8 @@ lightdm_SOURCES = \
 	greeter-socket.h \
 	guest-account.c \
 	guest-account.h \
+	io.h \
+	io.c \
 	lightdm.c \
 	logger.c \
 	logger.h \

@@ -21,6 +21,7 @@
 #include <grp.h>
 #include <pwd.h>
 
+#include "io.h"
 #include "session.h"
 #include "configuration.h"
 #include "console-kit.h"
@@ -28,6 +29,7 @@
 #include "guest-account.h"
 #include "shared-data-manager.h"
 #include "greeter-socket.h"
+
 
 enum {
     CREATE_GREETER,
@@ -419,7 +421,7 @@ read_from_child (Session *session, void *buf, size_t count)
 {
     SessionPrivate *priv = session_get_instance_private (session);
 
-    ssize_t n_read = read (priv->from_child_output, buf, count);
+    ssize_t n_read = rigid_read (priv->from_child_output, buf, count);
     if (n_read < 0)
         l_warning (session, "Error reading from session: %s", strerror (errno));
     return n_read;

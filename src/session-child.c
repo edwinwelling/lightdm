@@ -21,6 +21,7 @@
 #include <libaudit.h>
 #endif
 
+#include "io.h"
 #include "configuration.h"
 #include "session-child.h"
 #include "session.h"
@@ -65,7 +66,7 @@ write_string (const char *value)
 static ssize_t
 read_data (void *buf, size_t count)
 {
-    ssize_t n_read = read (from_daemon_output, buf, count);
+    ssize_t n_read = rigid_read (from_daemon_output, buf, count);
     if (n_read < 0)
         g_printerr ("Error reading from daemon: %s\n", strerror (errno));
 
